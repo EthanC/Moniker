@@ -1,5 +1,7 @@
 # Moniker
 
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/ethanc/moniker/main?label=Build%20Workflow) ![Docker Pulls](https://img.shields.io/docker/pulls/ethanchrisp/moniker?label=Docker%20Pulls) ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/ethanchrisp/moniker/latest?label=Docker%20Image%20Size)
+
 Moniker is a Twitter username watcher that reports availability via Discord.
 
 <p align="center">

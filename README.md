@@ -2,6 +2,10 @@
 
 Moniker is a Twitter username watcher that reports availability via Discord.
 
+<p align="center">
+    <img src="https://i.imgur.com/yXmhUhq.png" draggable="false">
+</p>
+
 # Setup
 
 [Twitter API](https://developer.twitter.com/en/docs/twitter-api) credentials are required for functionality, and a [Discord Webhook](https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks) is recommended for notifications.

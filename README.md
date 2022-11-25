@@ -21,7 +21,7 @@ Regardless of your chosen setup method, Moniker is intended for use with a task 
 
 ## Docker (Recommended)
 
-Modify the following `docker-compose.yml` example file, then run `docker compose up`. Alternatively, create a [Stack](https://docs.portainer.io/user/docker/stacks/add) in Portainer.
+Modify the following `docker-compose.yml` example file, then run `docker compose up`.
 
 ```yml
 version: "3"

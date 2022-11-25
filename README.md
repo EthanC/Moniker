@@ -4,7 +4,9 @@ Moniker is a Twitter username watcher that reports availability via Discord.
 
 # Setup
 
-[Twitter API](https://developer.twitter.com/en/docs/twitter-api) credentials are required for functionality, and a [Discord Webhook](https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks) is recommended for notifications. Regardless of your chosen setup method, Moniker is intended for use with a task scheduler, such as [cron](https://crontab.guru/).
+[Twitter API](https://developer.twitter.com/en/docs/twitter-api) credentials are required for functionality, and a [Discord Webhook](https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks) is recommended for notifications.
+
+Regardless of your chosen setup method, Moniker is intended for use with a task scheduler, such as [cron](https://crontab.guru/).
 
 **Environment Variables:**
 
@@ -19,9 +21,24 @@ Moniker is a Twitter username watcher that reports availability via Discord.
 
 ## Docker (Recommended)
 
-Clone the Moniker GitHub repository, then run `docker compose up`. Alternatively, create a [Stack](https://docs.portainer.io/user/docker/stacks/add) in Portainer using the provided `docker-compose.yml` example file.
+Modify the following `docker-compose.yml` example file, then run `docker compose up`. Alternatively, create a [Stack](https://docs.portainer.io/user/docker/stacks/add) in Portainer.
 
-https://github.com/EthanC/Moniker/blob/main/docker-compose.yml
+```yml
+version: "3"
+services:
+  moniker:
+    container_name: moniker
+    image: ethanchrisp/moniker:latest
+    environment:
+      TWITTER_ACCESS_TOKEN: XXXXXXXX
+      TWITTER_ACCESS_TOKEN_SECRET: XXXXXXXX
+      TWITTER_API_KEY: XXXXXXXX
+      TWITTER_API_KEY_SECRET: XXXXXXXX
+      TWITTER_USERNAMES: username123,user_name,jack
+      DISCORD_NOTIFY_WEBHOOK: https://discord.com/api/webhooks/XXXXXXXX/XXXXXXXX
+      DISCORD_LOG_WEBHOOK: https://discord.com/api/webhooks/XXXXXXXX/XXXXXXXX
+      DISCORD_LOG_LEVEL: WARNING
+```
 
 ## Standalone
 

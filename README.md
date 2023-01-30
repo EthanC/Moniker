@@ -8,7 +8,7 @@ Moniker is a Twitter username watcher that reports availability via Discord.
     <img src="https://i.imgur.com/yXmhUhq.png" draggable="false">
 </p>
 
-# Setup
+## Setup
 
 [Twitter API](https://developer.twitter.com/en/docs/twitter-api) credentials are required for functionality, and a [Discord Webhook](https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks) is recommended for notifications.
 
@@ -25,7 +25,7 @@ Regardless of your chosen setup method, Moniker is intended for use with a task 
 -   `DISCORD_LOG_WEBHOOK`: [Discord Webhook](https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks) URL to receive log events.
 -   `DISCORD_LOG_LEVEL`: Minimum [Loguru](https://loguru.readthedocs.io/en/stable/api/logger.html) severity level to forward to Discord.
 
-## Docker (Recommended)
+### Docker (Recommended)
 
 Modify the following `docker-compose.yml` example file, then run `docker compose up`.
 
@@ -46,7 +46,7 @@ services:
       DISCORD_LOG_LEVEL: WARNING
 ```
 
-## Standalone
+### Standalone
 
 Moniker is built for [Python 3.11](https://www.python.org/) or greater.
 

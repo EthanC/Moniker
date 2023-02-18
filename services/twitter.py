@@ -1,4 +1,4 @@
-import os
+from os import environ
 from typing import Optional, Self
 
 from discord_webhook import DiscordEmbed
@@ -20,10 +20,10 @@ class Twitter:
         try:
             client: API = API(
                 OAuth1UserHandler(
-                    os.environ.get("TWITTER_API_KEY"),
-                    os.environ.get("TWITTER_API_KEY_SECRET"),
-                    os.environ.get("TWITTER_ACCESS_TOKEN"),
-                    os.environ.get("TWITTER_ACCESS_TOKEN_SECRET"),
+                    environ.get("TWITTER_API_KEY"),
+                    environ.get("TWITTER_API_KEY_SECRET"),
+                    environ.get("TWITTER_ACCESS_TOKEN"),
+                    environ.get("TWITTER_ACCESS_TOKEN_SECRET"),
                 )
             )
 

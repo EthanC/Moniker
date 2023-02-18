@@ -1,5 +1,5 @@
-import os
-from datetime import datetime
+from datetime import datetime, timezone
+from os import environ
 from sys import exit
 from typing import List, Optional, Self
 
@@ -9,7 +9,7 @@ from loguru import logger
 from notifiers.logging import NotificationHandler
 from tweepy import Client
 
-from services import Twitter
+from services import GitHub, Twitter
 
 
 class Moniker:
@@ -27,10 +27,10 @@ class Moniker:
 
         if dotenv.load_dotenv():
             logger.success("Loaded environment variables")
-            logger.trace(os.environ)
+            logger.trace(environ)
 
-        if logUrl := os.environ.get("DISCORD_LOG_WEBHOOK"):
-            if not (logLevel := os.environ.get("DISCORD_LOG_LEVEL")):
+        if logUrl := environ.get("DISCORD_LOG_WEBHOOK"):
+            if not (logLevel := environ.get("DISCORD_LOG_LEVEL")):
                 logger.critical("Level for Discord webhook logging is not set")
 
                 return
@@ -46,7 +46,29 @@ class Moniker:
             logger.success(f"Enabled logging to Discord webhook")
             logger.trace(logUrl)
 
+        Moniker.CheckGitHub(self)
         Moniker.CheckTwitter(self)
+
+    def CheckGitHub(self: Self) -> None:
+        """Check availability of the configured GitHub usernames."""
+
+        usernames: List[str] = []
+
+        if var := environ.get("GITHUB_USERNAMES"):
+            usernames = var.split(",")
+
+        logger.trace(usernames)
+
+        for username in usernames:
+            if not GitHub.IsUserAvailable(self, username):
+                continue
+
+            if environ.get("DISCORD_NOTIFY_WEBHOOK"):
+                embed: DiscordEmbed = GitHub.BuildEmbed(self, username)
+
+                Moniker.Notify(self, embed)
+
+        logger.info("Completed availability check for all configured GitHub usernames")
 
     def CheckTwitter(self: Self) -> None:
         """Check availability of the configured Twitter usernames."""
@@ -58,7 +80,7 @@ class Moniker:
 
         usernames: List[str] = []
 
-        if var := os.environ.get("TWITTER_USERNAMES"):
+        if var := environ.get("TWITTER_USERNAMES"):
             usernames = var.split(",")
 
         logger.trace(usernames)
@@ -67,7 +89,7 @@ class Moniker:
             if not Twitter.IsUserAvailable(self, client, username):
                 continue
 
-            if os.environ.get("DISCORD_NOTIFY_WEBHOOK"):
+            if environ.get("DISCORD_NOTIFY_WEBHOOK"):
                 embed: DiscordEmbed = Twitter.BuildEmbed(self, username)
 
                 Moniker.Notify(self, embed)
@@ -77,7 +99,7 @@ class Moniker:
     def Notify(self: Self, embed: DiscordEmbed) -> None:
         """Report username availability to the configured Discord webhook."""
 
-        if not (url := os.environ.get("DISCORD_NOTIFY_WEBHOOK")):
+        if not (url := environ.get("DISCORD_NOTIFY_WEBHOOK")):
             logger.info("Discord webhook for notifications is not set")
 
             return
@@ -87,7 +109,7 @@ class Moniker:
             url="https://github.com/EthanC/Moniker",
             icon_url="https://i.imgur.com/lhTfe8m.png",
         )
-        embed.set_timestamp(datetime.now().timestamp())
+        embed.set_timestamp(datetime.now().timestamp(timezone.utc))
 
         DiscordWebhook(url=url, embeds=[embed], rate_limit_retry=True).execute()
 

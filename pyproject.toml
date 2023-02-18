@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "moniker"
 version = "1.0.0"
-description = "Twitter username watcher that reports availability via Discord."
+description = "Monitor usernames across various services and report availability via Discord."
 authors = ["EthanC <16727756+EthanC@users.noreply.github.com>"]
 license = "MIT"
 readme = "README.md"

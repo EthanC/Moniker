@@ -109,7 +109,7 @@ class Moniker:
             url="https://github.com/EthanC/Moniker",
             icon_url="https://i.imgur.com/lhTfe8m.png",
         )
-        embed.set_timestamp(datetime.now().timestamp(timezone.utc))
+        embed.set_timestamp(datetime.now(timezone.utc).timestamp())
 
         DiscordWebhook(url=url, embeds=[embed], rate_limit_retry=True).execute()
 

@@ -14,7 +14,7 @@ from services import GitHub, Twitter
 
 class Moniker:
     """
-    Twitter username watcher that reports availability via Discord.
+    Monitor usernames across various services and report availability via Discord.
 
     https://github.com/EthanC/Moniker
     """

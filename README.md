@@ -5,7 +5,7 @@
 Moniker monitors usernames across various services and reports availability via Discord.
 
 <p align="center">
-    <img src="https://i.imgur.com/yXmhUhq.png" draggable="false">
+    <img src="https://i.imgur.com/OzxHboR.png" draggable="false">
 </p>
 
 ## Setup

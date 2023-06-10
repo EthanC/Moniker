@@ -34,7 +34,6 @@ class Twitter:
             return
 
         logger.success("Authenticated with Twitter")
-        logger.trace(client.rate_limit_status())
 
         return client
 

@@ -9,7 +9,7 @@ from loguru import logger
 from notifiers.logging import NotificationHandler
 from tweepy import Client
 
-from services import GitHub, Twitter
+from services import GitHub, Snapchat, Twitter
 
 
 class Moniker:
@@ -47,15 +47,20 @@ class Moniker:
             logger.trace(logUrl)
 
         Moniker.CheckGitHub(self)
+        Moniker.CheckSnapchat(self)
         Moniker.CheckTwitter(self)
 
     def CheckGitHub(self: Self) -> None:
         """Check availability of the configured GitHub usernames."""
 
-        usernames: List[str] = []
+        if not (var := environ.get("GITHUB_USERNAMES")):
+            logger.info(
+                "Skipping availability check for GitHub, no usernames configured"
+            )
 
-        if var := environ.get("GITHUB_USERNAMES"):
-            usernames = var.split(",")
+            return
+
+        usernames: List[str] = var.split(",")
 
         logger.trace(usernames)
 
@@ -70,20 +75,51 @@ class Moniker:
 
         logger.info("Completed availability check for all configured GitHub usernames")
 
+    def CheckSnapchat(self: Self) -> None:
+        """Check availability of the configured Snapchat usernames."""
+
+        if not (var := environ.get("SNAPCHAT_USERNAMES")):
+            logger.info(
+                "Skipping availability check for Snapchat, no usernames configured"
+            )
+
+            return
+
+        usernames: List[str] = var.split(",")
+
+        logger.trace(usernames)
+
+        for username in usernames:
+            if not Snapchat.IsUserAvailable(self, username):
+                continue
+
+            if environ.get("DISCORD_NOTIFY_WEBHOOK"):
+                embed: DiscordEmbed = Snapchat.BuildEmbed(self, username)
+
+                Moniker.Notify(self, embed)
+
+        logger.info(
+            "Completed availability check for all configured Snapchat usernames"
+        )
+
     def CheckTwitter(self: Self) -> None:
         """Check availability of the configured Twitter usernames."""
+
+        if not (var := environ.get("TWITTER_USERNAMES")):
+            logger.info(
+                "Skipping availability check for Twitter, no usernames configured"
+            )
+
+            return
+
+        usernames: List[str] = var.split(",")
+
+        logger.trace(usernames)
 
         client: Optional[Client] = Twitter.Authenticate(self)
 
         if not client:
             return
-
-        usernames: List[str] = []
-
-        if var := environ.get("TWITTER_USERNAMES"):
-            usernames = var.split(",")
-
-        logger.trace(usernames)
 
         for username in usernames:
             if not Twitter.IsUserAvailable(self, client, username):

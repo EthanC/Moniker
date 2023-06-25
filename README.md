@@ -17,6 +17,7 @@ Regardless of your chosen setup method, Moniker is intended for use with a task 
 **Environment Variables:**
 
 -   `GITHUB_USERNAMES`: Comma-separated list of GitHub usernames to monitor.
+-   `SNAPCHAT_USERNAMES`: Comma-separated list of Snapchat usernames to monitor.
 -   `TWITTER_ACCESS_TOKEN` (Required for Twitter): [Twitter API](https://developer.twitter.com/en/docs/twitter-api) Access Token.
 -   `TWITTER_ACCESS_TOKEN_SECRET` (Required for Twitter): [Twitter API](https://developer.twitter.com/en/docs/twitter-api) Access Token Secret.
 -   `TWITTER_API_KEY` (Required for Twitter): [Twitter API](https://developer.twitter.com/en/docs/twitter-api) Key.
@@ -38,6 +39,7 @@ services:
     image: ethanchrisp/moniker:latest
     environment:
       GITHUB_USERNAMES: XXXXXXXX,YYYYYYYY,ZZZZZZZZ
+      SNAPCHAT_USERNAMES: XXXXXXXX,YYYYYYYY,ZZZZZZZZ
       TWITTER_ACCESS_TOKEN: XXXXXXXX
       TWITTER_ACCESS_TOKEN_SECRET: XXXXXXXX
       TWITTER_API_KEY: XXXXXXXX

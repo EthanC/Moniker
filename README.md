@@ -1,6 +1,6 @@
 # Moniker
 
-![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/EthanC/Moniker/main.yml?branch=main) ![Docker Pulls](https://img.shields.io/docker/pulls/ethanchrisp/moniker?label=Docker%20Pulls) ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/ethanchrisp/moniker/latest?label=Docker%20Image%20Size)
+![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/EthanC/Moniker/ci.yml?branch=main) ![Docker Pulls](https://img.shields.io/docker/pulls/ethanchrisp/moniker?label=Docker%20Pulls) ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/ethanchrisp/moniker/latest?label=Docker%20Image%20Size)
 
 Moniker monitors usernames across various services and reports availability via Discord.
 

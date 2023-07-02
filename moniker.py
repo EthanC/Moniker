@@ -171,7 +171,7 @@ class Moniker:
         embed.set_author(
             "Moniker",
             url="https://github.com/EthanC/Moniker",
-            icon_url="https://i.imgur.com/lhTfe8m.png",
+            icon_url="https://i.imgur.com/gImd2zu.png",
         )
         embed.set_timestamp(datetime.now(timezone.utc).timestamp())
 

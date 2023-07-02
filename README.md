@@ -2,7 +2,12 @@
 
 ![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/EthanC/Moniker/ci.yml?branch=main) ![Docker Pulls](https://img.shields.io/docker/pulls/ethanchrisp/moniker?label=Docker%20Pulls) ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/ethanchrisp/moniker/latest?label=Docker%20Image%20Size)
 
-Moniker monitors usernames across various services and reports availability via Discord.
+Moniker monitors usernames across the following platforms and reports availability via Discord.
+
+-   [GitHub](https://github.com/)
+-   [Mastodon](https://mastodon.social/)
+-   [Snapchat](https://www.snapchat.com/)
+-   [Twitter](https://twitter.com/)
 
 <p align="center">
     <img src="https://i.imgur.com/OzxHboR.png" draggable="false">
@@ -17,6 +22,7 @@ Regardless of your chosen setup method, Moniker is intended for use with a task 
 **Environment Variables:**
 
 -   `GITHUB_USERNAMES`: Comma-separated list of GitHub usernames to monitor.
+-   `MASTODON_USERNAMES`: Comma-separated list of Mastodon usernames to monitor.
 -   `SNAPCHAT_USERNAMES`: Comma-separated list of Snapchat usernames to monitor.
 -   `TWITTER_ACCESS_TOKEN` (Required for Twitter): [Twitter API](https://developer.twitter.com/en/docs/twitter-api) Access Token.
 -   `TWITTER_ACCESS_TOKEN_SECRET` (Required for Twitter): [Twitter API](https://developer.twitter.com/en/docs/twitter-api) Access Token Secret.
@@ -39,6 +45,7 @@ services:
     image: ethanchrisp/moniker:latest
     environment:
       GITHUB_USERNAMES: XXXXXXXX,YYYYYYYY,ZZZZZZZZ
+      MASTODON_USERNAMES: XXXXXXXX,YYYYYYYY,ZZZZZZZZ
       SNAPCHAT_USERNAMES: XXXXXXXX,YYYYYYYY,ZZZZZZZZ
       TWITTER_ACCESS_TOKEN: XXXXXXXX
       TWITTER_ACCESS_TOKEN_SECRET: XXXXXXXX

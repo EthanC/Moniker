@@ -9,7 +9,7 @@ from loguru import logger
 from notifiers.logging import NotificationHandler
 from tweepy import Client
 
-from services import GitHub, Snapchat, Twitter
+from services import GitHub, Mastodon, Snapchat, Twitter
 
 
 class Moniker:
@@ -47,6 +47,7 @@ class Moniker:
             logger.trace(logUrl)
 
         Moniker.CheckGitHub(self)
+        Moniker.CheckMastodon(self)
         Moniker.CheckSnapchat(self)
         Moniker.CheckTwitter(self)
 
@@ -74,6 +75,33 @@ class Moniker:
                 Moniker.Notify(self, embed)
 
         logger.info("Completed availability check for all configured GitHub usernames")
+
+    def CheckMastodon(self: Self) -> None:
+        """Check availability of the configured Mastodon usernames."""
+
+        if not (var := environ.get("MASTODON_USERNAMES")):
+            logger.info(
+                "Skipping availability check for Mastodon, no usernames configured"
+            )
+
+            return
+
+        usernames: List[str] = var.split(",")
+
+        logger.trace(usernames)
+
+        for username in usernames:
+            if not Mastodon.IsUserAvailable(self, username):
+                continue
+
+            if environ.get("DISCORD_NOTIFY_WEBHOOK"):
+                embed: DiscordEmbed = Mastodon.BuildEmbed(self, username)
+
+                Moniker.Notify(self, embed)
+
+        logger.info(
+            "Completed availability check for all configured Mastodon usernames"
+        )
 
     def CheckSnapchat(self: Self) -> None:
         """Check availability of the configured Snapchat usernames."""

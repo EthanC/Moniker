@@ -25,10 +25,6 @@ Regardless of your chosen setup method, Moniker is intended for use with a task 
 -   `GITHUB_USERNAMES`: Comma-separated list of GitHub usernames to monitor.
 -   `MASTODON_USERNAMES`: Comma-separated list of Mastodon usernames to monitor.
 -   `SNAPCHAT_USERNAMES`: Comma-separated list of Snapchat usernames to monitor.
--   `TWITTER_ACCESS_TOKEN` (Required for Twitter): [Twitter API](https://developer.twitter.com/en/docs/twitter-api) Access Token.
--   `TWITTER_ACCESS_TOKEN_SECRET` (Required for Twitter): [Twitter API](https://developer.twitter.com/en/docs/twitter-api) Access Token Secret.
--   `TWITTER_API_KEY` (Required for Twitter): [Twitter API](https://developer.twitter.com/en/docs/twitter-api) Key.
--   `TWITTER_API_KEY_SECRET` (Required for Twitter): [Twitter API](https://developer.twitter.com/en/docs/twitter-api) Key Secret.
 -   `TWITTER_USERNAMES`: Comma-separated list of Twitter usernames to monitor.
 -   `YOUTUBE_USERNAMES`: Comma-separated list of YouTube usernames to monitor.
 -   `DISCORD_NOTIFY_WEBHOOK`: [Discord Webhook](https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks) URL to receive available username notifications.
@@ -49,10 +45,6 @@ services:
       GITHUB_USERNAMES: XXXXXXXX,YYYYYYYY,ZZZZZZZZ
       MASTODON_USERNAMES: XXXXXXXX,YYYYYYYY,ZZZZZZZZ
       SNAPCHAT_USERNAMES: XXXXXXXX,YYYYYYYY,ZZZZZZZZ
-      TWITTER_ACCESS_TOKEN: XXXXXXXX
-      TWITTER_ACCESS_TOKEN_SECRET: XXXXXXXX
-      TWITTER_API_KEY: XXXXXXXX
-      TWITTER_API_KEY_SECRET: XXXXXXXX
       TWITTER_USERNAMES: XXXXXXXX,YYYYYYYY,ZZZZZZZZ
       YOUTUBE_USERNAMES: XXXXXXXX,YYYYYYYY,ZZZZZZZZ
       DISCORD_NOTIFY_WEBHOOK: https://discord.com/api/webhooks/XXXXXXXX/XXXXXXXX

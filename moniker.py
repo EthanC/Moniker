@@ -1,13 +1,12 @@
 from datetime import datetime, timezone
 from os import environ
 from sys import exit
-from typing import List, Optional, Self
+from typing import List, Self
 
 import dotenv
 from discord_webhook import DiscordEmbed, DiscordWebhook
 from loguru import logger
 from notifiers.logging import NotificationHandler
-from tweepy import Client
 
 from services import GitHub, Mastodon, Snapchat, Twitter, YouTube
 
@@ -145,13 +144,8 @@ class Moniker:
 
         logger.trace(usernames)
 
-        client: Optional[Client] = Twitter.Authenticate(self)
-
-        if not client:
-            return
-
         for username in usernames:
-            if not Twitter.IsUserAvailable(self, client, username):
+            if not Twitter.IsUserAvailable(self, username):
                 continue
 
             if environ.get("DISCORD_NOTIFY_WEBHOOK"):

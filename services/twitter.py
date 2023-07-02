@@ -1,5 +1,5 @@
 import json
-from typing import Any, Dict, Self
+from typing import Any, Dict, Optional, Self
 
 import httpx
 from bs4 import BeautifulSoup
@@ -51,12 +51,13 @@ class Twitter:
         # is to be lifted, we can avoid the API entirely and instead
         # scrape the empty_state_header_text from profile pages.
         # https://twitter.com/elonmusk/status/1674865731136020505
-        results: bool = data.get("hasResults", False)
+        results: Optional[bool] = data.get("hasResults")
 
-        if not results:
-            logger.success(f"Twitter username @{username} is available")
+        if results is not None:
+            if not results:
+                logger.success(f"Twitter username @{username} is available")
 
-            return True
+                return True
 
         logger.info(f"Fetched Twitter user @{username}, username is unavailable")
 

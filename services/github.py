@@ -2,7 +2,7 @@ from typing import Optional, Self
 
 import httpx
 from discord_webhook import DiscordEmbed
-from httpx import Response
+from httpx import Response, TimeoutException
 from loguru import logger
 
 
@@ -22,6 +22,10 @@ class GitHub:
             status = res.status_code
 
             logger.trace(f"HTTP {status} GET {res.url}: {res.text}")
+        except TimeoutException as e:
+            logger.debug(
+                f"TimeoutException occurred while fetching GitHub username @{username}, {e}"
+            )
         except Exception as e:
             logger.error(
                 f"Failed to determine availability of GitHub username @{username}, {e}"

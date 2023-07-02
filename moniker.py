@@ -9,7 +9,7 @@ from loguru import logger
 from notifiers.logging import NotificationHandler
 from tweepy import Client
 
-from services import GitHub, Mastodon, Snapchat, Twitter
+from services import GitHub, Mastodon, Snapchat, Twitter, YouTube
 
 
 class Moniker:
@@ -50,6 +50,7 @@ class Moniker:
         Moniker.CheckMastodon(self)
         Moniker.CheckSnapchat(self)
         Moniker.CheckTwitter(self)
+        Moniker.CheckYouTube(self)
 
     def CheckGitHub(self: Self) -> None:
         """Check availability of the configured GitHub usernames."""
@@ -159,6 +160,31 @@ class Moniker:
                 Moniker.Notify(self, embed)
 
         logger.info("Completed availability check for all configured Twitter usernames")
+
+    def CheckYouTube(self: Self) -> None:
+        """Check availability of the configured YouTube usernames."""
+
+        if not (var := environ.get("YOUTUBE_USERNAMES")):
+            logger.info(
+                "Skipping availability check for YouTube, no usernames configured"
+            )
+
+            return
+
+        usernames: List[str] = var.split(",")
+
+        logger.trace(usernames)
+
+        for username in usernames:
+            if not YouTube.IsUserAvailable(self, username):
+                continue
+
+            if environ.get("DISCORD_NOTIFY_WEBHOOK"):
+                embed: DiscordEmbed = YouTube.BuildEmbed(self, username)
+
+                Moniker.Notify(self, embed)
+
+        logger.info("Completed availability check for all configured YouTube usernames")
 
     def Notify(self: Self, embed: DiscordEmbed) -> None:
         """Report username availability to the configured Discord webhook."""

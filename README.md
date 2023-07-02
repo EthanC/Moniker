@@ -8,6 +8,7 @@ Moniker monitors usernames across the following platforms and reports availabili
 -   [Mastodon](https://mastodon.social/)
 -   [Snapchat](https://www.snapchat.com/)
 -   [Twitter](https://twitter.com/)
+-   [YouTube](https://youtube.com/)
 
 <p align="center">
     <img src="https://i.imgur.com/OzxHboR.png" draggable="false">
@@ -29,6 +30,7 @@ Regardless of your chosen setup method, Moniker is intended for use with a task 
 -   `TWITTER_API_KEY` (Required for Twitter): [Twitter API](https://developer.twitter.com/en/docs/twitter-api) Key.
 -   `TWITTER_API_KEY_SECRET` (Required for Twitter): [Twitter API](https://developer.twitter.com/en/docs/twitter-api) Key Secret.
 -   `TWITTER_USERNAMES`: Comma-separated list of Twitter usernames to monitor.
+-   `YOUTUBE_USERNAMES`: Comma-separated list of YouTube usernames to monitor.
 -   `DISCORD_NOTIFY_WEBHOOK`: [Discord Webhook](https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks) URL to receive available username notifications.
 -   `DISCORD_LOG_WEBHOOK`: [Discord Webhook](https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks) URL to receive log events.
 -   `DISCORD_LOG_LEVEL`: Minimum [Loguru](https://loguru.readthedocs.io/en/stable/api/logger.html) severity level to forward to Discord.
@@ -52,6 +54,7 @@ services:
       TWITTER_API_KEY: XXXXXXXX
       TWITTER_API_KEY_SECRET: XXXXXXXX
       TWITTER_USERNAMES: XXXXXXXX,YYYYYYYY,ZZZZZZZZ
+      YOUTUBE_USERNAMES: XXXXXXXX,YYYYYYYY,ZZZZZZZZ
       DISCORD_NOTIFY_WEBHOOK: https://discord.com/api/webhooks/XXXXXXXX/XXXXXXXX
       DISCORD_LOG_WEBHOOK: https://discord.com/api/webhooks/XXXXXXXX/XXXXXXXX
       DISCORD_LOG_LEVEL: WARNING

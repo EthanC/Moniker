@@ -68,10 +68,10 @@ class Moniker:
             if not GitHub.IsUserAvailable(self, username):
                 continue
 
-            if environ.get("DISCORD_WEBHOOK_URL"):
+            if url := environ.get("DISCORD_WEBHOOK_URL"):
                 embed: DiscordEmbed = GitHub.BuildEmbed(self, username)
 
-                Moniker.Notify(self, embed)
+                Moniker.Notify(self, url, embed)
 
         logger.info("Completed username availability checks for GitHub")
 
@@ -91,10 +91,10 @@ class Moniker:
             if not Mastodon.IsUserAvailable(self, username):
                 continue
 
-            if environ.get("DISCORD_WEBHOOK_URL"):
+            if url := environ.get("DISCORD_WEBHOOK_URL"):
                 embed: DiscordEmbed = Mastodon.BuildEmbed(self, username)
 
-                Moniker.Notify(self, embed)
+                Moniker.Notify(self, url, embed)
 
         logger.info("Completed username availability checks for Mastodon")
 
@@ -114,10 +114,10 @@ class Moniker:
             if not Snapchat.IsUserAvailable(self, username):
                 continue
 
-            if environ.get("DISCORD_WEBHOOK_URL"):
+            if url := environ.get("DISCORD_WEBHOOK_URL"):
                 embed: DiscordEmbed = Snapchat.BuildEmbed(self, username)
 
-                Moniker.Notify(self, embed)
+                Moniker.Notify(self, url, embed)
 
         logger.info("Completed username availability checks for Snapchat")
 
@@ -134,17 +134,13 @@ class Moniker:
         logger.trace(usernames)
 
         for username in usernames:
-            # TODO: Testing
-            Twitter.IsUserAvailable(self, username)
-            break
-
             if not Twitter.IsUserAvailable(self, username):
                 continue
 
-            if environ.get("DISCORD_WEBHOOK_URL"):
+            if url := environ.get("DISCORD_WEBHOOK_URL"):
                 embed: DiscordEmbed = Twitter.BuildEmbed(self, username)
 
-                Moniker.Notify(self, embed)
+                Moniker.Notify(self, url, embed)
 
         logger.info("Completed username availability checks for Twitter")
 
@@ -164,14 +160,14 @@ class Moniker:
             if not YouTube.IsUserAvailable(self, username):
                 continue
 
-            if environ.get("DISCORD_WEBHOOK_URL"):
+            if url := environ.get("DISCORD_WEBHOOK_URL"):
                 embed: DiscordEmbed = YouTube.BuildEmbed(self, username)
 
-                Moniker.Notify(self, embed)
+                Moniker.Notify(self, url, embed)
 
         logger.info("Completed username availability checks for YouTube")
 
-    def Notify(self: Self, embed: DiscordEmbed) -> None:
+    def Notify(self: Self, url: str, embed: DiscordEmbed) -> None:
         """Report username availability to the configured Discord webhook."""
 
         embed.set_author(

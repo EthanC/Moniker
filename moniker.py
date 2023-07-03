@@ -32,7 +32,7 @@ class Moniker:
             logger.remove()
             logger.add(stdout, level=level)
 
-            logger.success(f"Set logging level to {level}")
+            logger.success(f"Set console logging level to {level}")
 
         if url := environ.get("LOG_DISCORD_WEBHOOK_URL"):
             logger.add(

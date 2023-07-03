@@ -37,10 +37,10 @@ class Twitter:
             logger.trace(script)
 
             data = json.loads(script)
-            data = data["props"]["pageProps"]["contextProvider"]
+            data = data["props"]["pageProps"]["contextProviderr"]
         except Exception as e:
-            logger.error(
-                f"Failed to determine availability of Twitter username @{username}, {e}"
+            logger.opt(exception=e).error(
+                f"Failed to determine availability of Twitter username @{username}"
             )
 
         # TODO: Due to limitations of this unsupported API, usernames

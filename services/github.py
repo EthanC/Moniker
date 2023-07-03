@@ -23,12 +23,12 @@ class GitHub:
 
             logger.trace(f"HTTP {status} GET {res.url}: {res.text}")
         except TimeoutException as e:
-            logger.debug(
-                f"TimeoutException occurred while fetching GitHub username @{username}, {e}"
+            logger.opt(exception=e).debug(
+                f"Ignoring GitHub timeout for username @{username}"
             )
         except Exception as e:
-            logger.error(
-                f"Failed to determine availability of GitHub username @{username}, {e}"
+            logger.opt(exception=e).error(
+                f"Failed to determine availability of GitHub username @{username}"
             )
 
         # GitHub returns HTTP 404 (Not Found) for non-existent accounts,

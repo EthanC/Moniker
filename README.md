@@ -22,14 +22,15 @@ Regardless of your chosen setup method, Moniker is intended for use with a task 
 
 **Environment Variables:**
 
--   `GITHUB_USERNAMES`: Comma-separated list of GitHub usernames to monitor.
--   `MASTODON_USERNAMES`: Comma-separated list of Mastodon usernames to monitor.
--   `SNAPCHAT_USERNAMES`: Comma-separated list of Snapchat usernames to monitor.
--   `TWITTER_USERNAMES`: Comma-separated list of Twitter usernames to monitor.
--   `YOUTUBE_USERNAMES`: Comma-separated list of YouTube usernames to monitor.
--   `DISCORD_NOTIFY_WEBHOOK`: [Discord Webhook](https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks) URL to receive available username notifications.
--   `DISCORD_LOG_WEBHOOK`: [Discord Webhook](https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks) URL to receive log events.
--   `DISCORD_LOG_LEVEL`: Minimum [Loguru](https://loguru.readthedocs.io/en/stable/api/logger.html) severity level to forward to Discord.
+-   `LOG_LEVEL`: [Loguru](https://loguru.readthedocs.io/en/stable/api/logger.html) severity level to write to the console.
+-   `LOG_DISCORD_WEBHOOK_URL`: [Discord Webhook](https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks) URL to receive log events.
+-   `LOG_DISCORD_WEBHOOK_LEVEL`: Minimum [Loguru](https://loguru.readthedocs.io/en/stable/api/logger.html) severity level to forward to Discord.
+-   `GITHUB_USERNAMES`: Comma-separated list of [GitHub](https://github.com/) usernames to monitor.
+-   `MASTODON_USERNAMES`: Comma-separated list of [Mastodon](https://mastodon.social/) usernames to monitor.
+-   `SNAPCHAT_USERNAMES`: Comma-separated list of [Snapchat](https://www.snapchat.com/) usernames to monitor.
+-   `TWITTER_USERNAMES`: Comma-separated list of [Twitter](https://twitter.com/) usernames to monitor.
+-   `YOUTUBE_USERNAMES`: Comma-separated list of [YouTube](https://youtube.com/) usernames to monitor.
+-   `DISCORD_WEBHOOK_URL`: [Discord Webhook](https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks) URL to receive available username notifications.
 
 ### Docker (Recommended)
 
@@ -42,14 +43,15 @@ services:
     container_name: moniker
     image: ethanchrisp/moniker:latest
     environment:
+      LOG_LEVEL: INFO
+      LOG_DISCORD_WEBHOOK_URL: https://discord.com/api/webhooks/YYYYYYYY/YYYYYYYY
+      LOG_DISCORD_WEBHOOK_LEVEL: WARNING
       GITHUB_USERNAMES: XXXXXXXX,YYYYYYYY,ZZZZZZZZ
       MASTODON_USERNAMES: XXXXXXXX,YYYYYYYY,ZZZZZZZZ
       SNAPCHAT_USERNAMES: XXXXXXXX,YYYYYYYY,ZZZZZZZZ
       TWITTER_USERNAMES: XXXXXXXX,YYYYYYYY,ZZZZZZZZ
       YOUTUBE_USERNAMES: XXXXXXXX,YYYYYYYY,ZZZZZZZZ
-      DISCORD_NOTIFY_WEBHOOK: https://discord.com/api/webhooks/XXXXXXXX/XXXXXXXX
-      DISCORD_LOG_WEBHOOK: https://discord.com/api/webhooks/XXXXXXXX/XXXXXXXX
-      DISCORD_LOG_LEVEL: WARNING
+      DISCORD_WEBHOOK_URL: https://discord.com/api/webhooks/XXXXXXXX/XXXXXXXX
 ```
 
 ### Standalone

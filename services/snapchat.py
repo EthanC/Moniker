@@ -25,8 +25,8 @@ class Snapchat:
 
             logger.trace(f"HTTP {status} GET {res.url}: {res.text}")
         except Exception as e:
-            logger.error(
-                f"Failed to determine availability of Snapchat username @{username}, {e}"
+            logger.opt(exception=e).error(
+                f"Failed to determine availability of Snapchat username @{username}"
             )
 
         # Snapchat returns HTTP 404 (Not Found) for non-existent accounts,

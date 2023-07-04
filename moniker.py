@@ -10,7 +10,7 @@ from loguru import logger
 from loguru_discord import DiscordSink
 
 from handlers import Intercept
-from services import GitHub, Mastodon, Snapchat, Twitter, YouTube
+from services import CashApp, GitHub, Mastodon, Snapchat, Twitter, YouTube
 
 
 class Moniker:
@@ -49,6 +49,7 @@ class Moniker:
             logger.success(f"Enabled logging to Discord webhook")
             logger.trace(url)
 
+        Moniker.CheckCashApp(self)
         Moniker.CheckGitHub(self)
         Moniker.CheckMastodon(self)
         Moniker.CheckSnapchat(self)
@@ -56,6 +57,29 @@ class Moniker:
         Moniker.CheckYouTube(self)
 
         logger.success("Completed username availability checks for all services")
+
+    def CheckCashApp(self: Self) -> None:
+        """Check availability of the configured Cash App $Cashtags."""
+
+        if not (var := environ.get("CASHAPP_USERNAMES")):
+            logger.info("Skipping Cash App, no $Cashtags configured")
+
+            return
+
+        cashtags: List[str] = var.split(",")
+
+        logger.trace(cashtags)
+
+        for cashtag in cashtags:
+            if not CashApp.IsUserAvailable(self, cashtag):
+                continue
+
+            if url := environ.get("DISCORD_WEBHOOK_URL"):
+                embed: DiscordEmbed = CashApp.BuildEmbed(self, cashtag)
+
+                Moniker.Notify(self, url, embed)
+
+        logger.info("Completed $Cashtag availability checks for Cash App")
 
     def CheckGitHub(self: Self) -> None:
         """Check availability of the configured GitHub usernames."""

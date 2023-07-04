@@ -4,6 +4,7 @@
 
 Moniker monitors usernames across the following platforms and reports availability via Discord.
 
+-   [Cash App](https://cash.app/)
 -   [GitHub](https://github.com/)
 -   [Mastodon](https://mastodon.social/)
 -   [Snapchat](https://www.snapchat.com/)
@@ -25,6 +26,7 @@ Regardless of your chosen setup method, Moniker is intended for use with a task 
 -   `LOG_LEVEL`: [Loguru](https://loguru.readthedocs.io/en/stable/api/logger.html) severity level to write to the console.
 -   `LOG_DISCORD_WEBHOOK_URL`: [Discord Webhook](https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks) URL to receive log events.
 -   `LOG_DISCORD_WEBHOOK_LEVEL`: Minimum [Loguru](https://loguru.readthedocs.io/en/stable/api/logger.html) severity level to forward to Discord.
+-   `CASHAPP_USERNAMES`: Comma-separated list of [Cash App](https://cash.app/) $Cashtags to monitor.
 -   `GITHUB_USERNAMES`: Comma-separated list of [GitHub](https://github.com/) usernames to monitor.
 -   `MASTODON_USERNAMES`: Comma-separated list of [Mastodon](https://mastodon.social/) usernames to monitor.
 -   `SNAPCHAT_USERNAMES`: Comma-separated list of [Snapchat](https://www.snapchat.com/) usernames to monitor.
@@ -46,6 +48,7 @@ services:
       LOG_LEVEL: INFO
       LOG_DISCORD_WEBHOOK_URL: https://discord.com/api/webhooks/YYYYYYYY/YYYYYYYY
       LOG_DISCORD_WEBHOOK_LEVEL: WARNING
+      CASHAPP_USERNAMES: XXXXXXXX,YYYYYYYY,ZZZZZZZZ
       GITHUB_USERNAMES: XXXXXXXX,YYYYYYYY,ZZZZZZZZ
       MASTODON_USERNAMES: XXXXXXXX,YYYYYYYY,ZZZZZZZZ
       SNAPCHAT_USERNAMES: XXXXXXXX,YYYYYYYY,ZZZZZZZZ

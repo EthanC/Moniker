@@ -10,7 +10,7 @@ from loguru import logger
 from loguru_discord import DiscordSink
 
 from handlers import Intercept
-from services import CashApp, GitHub, Mastodon, Snapchat, Twitter, YouTube
+from services import CashApp, GitHub, Mastodon, Snapchat, Twitter, Venmo, YouTube
 
 
 class Moniker:
@@ -54,6 +54,7 @@ class Moniker:
         Moniker.CheckMastodon(self)
         Moniker.CheckSnapchat(self)
         Moniker.CheckTwitter(self)
+        Moniker.CheckVenmo(self)
         Moniker.CheckYouTube(self)
 
         logger.success("Completed username availability checks for all services")
@@ -172,6 +173,29 @@ class Moniker:
                 Moniker.Notify(self, url, embed)
 
         logger.info("Completed username availability checks for Twitter")
+
+    def CheckVenmo(self: Self) -> None:
+        """Check availability of the configured Venmo usernames."""
+
+        if not (var := environ.get("VENMO_USERNAMES")):
+            logger.info("Skipping Venmo, no usernames configured")
+
+            return
+
+        usernames: List[str] = var.split(",")
+
+        logger.trace(usernames)
+
+        for username in usernames:
+            if not Venmo.IsUserAvailable(self, username):
+                continue
+
+            if url := environ.get("DISCORD_WEBHOOK_URL"):
+                embed: DiscordEmbed = Venmo.BuildEmbed(self, username)
+
+                Moniker.Notify(self, url, embed)
+
+        logger.info("Completed username availability checks for Venmo")
 
     def CheckYouTube(self: Self) -> None:
         """Check availability of the configured YouTube usernames."""

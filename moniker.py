@@ -1,3 +1,4 @@
+import logging
 from datetime import datetime, timezone
 from os import environ
 from sys import exit, stdout
@@ -8,6 +9,7 @@ from discord_webhook import DiscordEmbed, DiscordWebhook
 from loguru import logger
 from loguru_discord import DiscordSink
 
+from handlers import Intercept
 from services import GitHub, Mastodon, Snapchat, Twitter, YouTube
 
 
@@ -23,6 +25,9 @@ class Moniker:
 
         logger.info("Moniker")
         logger.info("https://github.com/EthanC/Moniker")
+
+        # Reroute standard logging to Loguru
+        logging.basicConfig(handlers=[Intercept()], level=0, force=True)
 
         if dotenv.load_dotenv():
             logger.success("Loaded environment variables")

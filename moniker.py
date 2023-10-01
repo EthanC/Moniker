@@ -6,6 +6,7 @@ from typing import List, Self
 
 import dotenv
 from discord_webhook import DiscordEmbed, DiscordWebhook
+from httpx import TimeoutException
 from loguru import logger
 from loguru_discord import DiscordSink
 
@@ -41,7 +42,7 @@ class Moniker:
 
         if url := environ.get("LOG_DISCORD_WEBHOOK_URL"):
             logger.add(
-                DiscordSink(url),
+                DiscordSink(url, suppress=[TimeoutException]),
                 level=environ.get("LOG_DISCORD_WEBHOOK_LEVEL"),
                 backtrace=False,
             )

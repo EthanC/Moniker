@@ -2,7 +2,7 @@ from typing import Optional, Self
 
 import httpx
 from discord_webhook import DiscordEmbed
-from httpx import Response, TimeoutException
+from httpx import Response
 from loguru import logger
 
 
@@ -24,10 +24,6 @@ class Mastodon:
             status = res.status_code
 
             logger.trace(f"HTTP {status} GET {res.url}: {res.text}")
-        except TimeoutException as e:
-            logger.opt(exception=e).debug(
-                f"Ignoring Mastodon timeout for username @{username}"
-            )
         except Exception as e:
             logger.opt(exception=e).error(
                 f"Failed to determine availability of Mastodon username @{username}"

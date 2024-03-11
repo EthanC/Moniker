@@ -1,4 +1,4 @@
-from typing import Optional, Self
+from typing import Self
 
 import httpx
 from discord_webhook import DiscordEmbed
@@ -15,7 +15,7 @@ class Snapchat:
     def IsUserAvailable(self: Self, username: str) -> bool:
         """Determine if a Snapchat username is available."""
 
-        status: Optional[int] = None
+        status: int | None = None
 
         try:
             res: Response = httpx.get(

@@ -2,7 +2,7 @@ import logging
 from datetime import datetime, timezone
 from os import environ
 from sys import exit, stdout
-from typing import List, Self
+from typing import Self
 
 import dotenv
 from discord_webhook import DiscordEmbed, DiscordWebhook
@@ -68,7 +68,7 @@ class Moniker:
 
             return
 
-        cashtags: List[str] = var.split(",")
+        cashtags: list[str] = var.split(",")
 
         logger.trace(cashtags)
 
@@ -91,7 +91,7 @@ class Moniker:
 
             return
 
-        usernames: List[str] = var.split(",")
+        usernames: list[str] = var.split(",")
 
         logger.trace(usernames)
 
@@ -114,7 +114,7 @@ class Moniker:
 
             return
 
-        usernames: List[str] = var.split(",")
+        usernames: list[str] = var.split(",")
 
         logger.trace(usernames)
 
@@ -137,7 +137,7 @@ class Moniker:
 
             return
 
-        usernames: List[str] = var.split(",")
+        usernames: list[str] = var.split(",")
 
         logger.trace(usernames)
 
@@ -160,7 +160,7 @@ class Moniker:
 
             return
 
-        usernames: List[str] = var.split(",")
+        usernames: list[str] = var.split(",")
 
         logger.trace(usernames)
 
@@ -183,7 +183,7 @@ class Moniker:
 
             return
 
-        usernames: List[str] = var.split(",")
+        usernames: list[str] = var.split(",")
 
         logger.trace(usernames)
 
@@ -206,7 +206,7 @@ class Moniker:
 
             return
 
-        usernames: List[str] = var.split(",")
+        usernames: list[str] = var.split(",")
 
         logger.trace(usernames)
 

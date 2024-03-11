@@ -1,5 +1,5 @@
 import json
-from typing import Any, Dict, Optional, Self
+from typing import Any, Self
 
 import httpx
 from bs4 import BeautifulSoup
@@ -17,7 +17,7 @@ class Twitter:
     def IsUserAvailable(self: Self, username: str) -> bool:
         """Determine if a Twitter username is available."""
 
-        data: Dict[str, Any] = {}
+        data: dict[str, Any] = {}
 
         try:
             res: Response = httpx.get(
@@ -51,13 +51,12 @@ class Twitter:
         # is to be lifted, we can avoid the API entirely and instead
         # scrape the empty_state_header_text from profile pages.
         # https://twitter.com/elonmusk/status/1674865731136020505
-        results: Optional[bool] = data.get("hasResults")
+        results: bool | None = data.get("hasResults")
 
-        if results is not None:
-            if not results:
-                logger.success(f"Twitter username @{username} is available")
+        if not results:
+            logger.success(f"Twitter username @{username} is available")
 
-                return True
+            return True
 
         logger.info(f"Fetched Twitter user @{username}, username is unavailable")
 

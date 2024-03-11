@@ -1,3 +1,4 @@
+# ruff: noqa: F401
 from .cashapp import CashApp
 from .github import GitHub
 from .mastodon import Mastodon

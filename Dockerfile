@@ -1,4 +1,4 @@
-FROM python:3.11.4-slim-bullseye
+FROM python:3.12.2-slim-bullseye
 
 WORKDIR /moniker
 
@@ -9,7 +9,7 @@ RUN poetry config virtualenvs.create false
 
 # Install dependencies
 COPY pyproject.toml pyproject.toml
-RUN poetry install
+RUN poetry install --no-root
 
 COPY . .
 

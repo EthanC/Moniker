@@ -41,7 +41,6 @@ Regardless of your chosen setup method, Moniker is intended for use with a task 
 Modify the following `docker-compose.yml` example file, then run `docker compose up`.
 
 ```yml
-version: "3"
 services:
   moniker:
     container_name: moniker
@@ -62,8 +61,8 @@ services:
 
 ### Standalone
 
-Moniker is built for [Python 3.11](https://www.python.org/) or greater.
+Moniker is built for [Python 3.12](https://www.python.org/) or greater.
 
-1. Install required dependencies using [Poetry](https://python-poetry.org/): `poetry install`
+1. Install required dependencies using [Poetry](https://python-poetry.org/): `poetry install --no-root`
 2. Rename `.env.example` to `.env`, then provide the environment variables.
 3. Start Moniker: `python moniker.py`

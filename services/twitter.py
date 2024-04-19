@@ -43,6 +43,8 @@ class Twitter:
                 f"Failed to determine availability of Twitter username @{username}"
             )
 
+            return False
+
         # TODO: Due to limitations of this unsupported API, usernames
         # held by suspended accounts will report as available.
         #

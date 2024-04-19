@@ -3,6 +3,6 @@ from .cashapp import CashApp
 from .github import GitHub
 from .mastodon import Mastodon
 from .snapchat import Snapchat
-from .twitter import Twitter
 from .venmo import Venmo
+from .x import X
 from .youtube import YouTube

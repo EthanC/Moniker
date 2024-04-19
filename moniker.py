@@ -11,7 +11,7 @@ from loguru import logger
 from loguru_discord import DiscordSink
 
 from handlers import Intercept
-from services import CashApp, GitHub, Mastodon, Snapchat, Twitter, Venmo, YouTube
+from services import CashApp, GitHub, Mastodon, Snapchat, Venmo, X, YouTube
 
 
 class Moniker:
@@ -54,8 +54,8 @@ class Moniker:
         Moniker.CheckGitHub(self)
         Moniker.CheckMastodon(self)
         Moniker.CheckSnapchat(self)
-        Moniker.CheckTwitter(self)
         Moniker.CheckVenmo(self)
+        Moniker.CheckX(self)
         Moniker.CheckYouTube(self)
 
         logger.success("Completed username availability checks for all services")
@@ -152,11 +152,11 @@ class Moniker:
 
         logger.info("Completed username availability checks for Snapchat")
 
-    def CheckTwitter(self: Self) -> None:
-        """Check availability of the configured Twitter usernames."""
+    def CheckX(self: Self) -> None:
+        """Check availability of the configured X usernames."""
 
-        if not (var := environ.get("TWITTER_USERNAMES")):
-            logger.info("Skipping Twitter, no usernames configured")
+        if not (var := environ.get("X_USERNAMES")):
+            logger.info("Skipping X, no usernames configured")
 
             return
 
@@ -165,15 +165,15 @@ class Moniker:
         logger.trace(usernames)
 
         for username in usernames:
-            if not Twitter.IsUserAvailable(self, username):
+            if not X.IsUserAvailable(self, username):
                 continue
 
             if url := environ.get("DISCORD_WEBHOOK_URL"):
-                embed: DiscordEmbed = Twitter.BuildEmbed(self, username)
+                embed: DiscordEmbed = X.BuildEmbed(self, username)
 
                 Moniker.Notify(self, url, embed)
 
-        logger.info("Completed username availability checks for Twitter")
+        logger.info("Completed username availability checks for X")
 
     def CheckVenmo(self: Self) -> None:
         """Check availability of the configured Venmo usernames."""

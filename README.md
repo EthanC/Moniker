@@ -8,8 +8,8 @@ Moniker monitors usernames across the following platforms and reports availabili
 -   [GitHub](https://github.com/)
 -   [Mastodon](https://mastodon.social/)
 -   [Snapchat](https://www.snapchat.com/)
--   [Twitter](https://twitter.com/)
 -   [Venmo](https://venmo.com/)
+-   [X](https://x.com/)
 -   [YouTube](https://youtube.com/)
 
 <p align="center">
@@ -31,7 +31,8 @@ Regardless of your chosen setup method, Moniker is intended for use with a task 
 -   `GITHUB_USERNAMES`: Comma-separated list of [GitHub](https://github.com/) usernames to monitor.
 -   `MASTODON_USERNAMES`: Comma-separated list of [Mastodon](https://mastodon.social/) usernames to monitor.
 -   `SNAPCHAT_USERNAMES`: Comma-separated list of [Snapchat](https://www.snapchat.com/) usernames to monitor.
--   `TWITTER_USERNAMES`: Comma-separated list of [Twitter](https://twitter.com/) usernames to monitor.
+-   `VENMO_USERNAMES`: Comma-separated list of [Venmo](https://www.venmo.com/) usernames to monitor.
+-   `X_USERNAMES`: Comma-separated list of [X](https://x.com/) usernames to monitor.
 -   `GITHUB_USERNAMES`: Comma-separated list of [Venmo](https://venmo.com/) usernames to monitor.
 -   `YOUTUBE_USERNAMES`: Comma-separated list of [YouTube](https://youtube.com/) usernames to monitor.
 -   `DISCORD_WEBHOOK_URL`: [Discord Webhook](https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks) URL to receive available username notifications.
@@ -53,8 +54,8 @@ services:
       GITHUB_USERNAMES: XXXXXXXX,YYYYYYYY,ZZZZZZZZ
       MASTODON_USERNAMES: XXXXXXXX,YYYYYYYY,ZZZZZZZZ
       SNAPCHAT_USERNAMES: XXXXXXXX,YYYYYYYY,ZZZZZZZZ
-      TWITTER_USERNAMES: XXXXXXXX,YYYYYYYY,ZZZZZZZZ
       VENMO_USERNAMES: XXXXXXXX,YYYYYYYY,ZZZZZZZZ
+      X_USERNAMES: XXXXXXXX,YYYYYYYY,ZZZZZZZZ
       YOUTUBE_USERNAMES: XXXXXXXX,YYYYYYYY,ZZZZZZZZ
       DISCORD_WEBHOOK_URL: https://discord.com/api/webhooks/XXXXXXXX/XXXXXXXX
 ```

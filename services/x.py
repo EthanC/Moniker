@@ -8,14 +8,14 @@ from httpx import Response
 from loguru import logger
 
 
-class Twitter:
+class X:
     """
-    Class to integrate with Twitter and build objects specific to the
-    Twitter platform.
+    Class to integrate with X and build objects specific to the
+    X platform.
     """
 
     def IsUserAvailable(self: Self, username: str) -> bool:
-        """Determine if a Twitter username is available."""
+        """Determine if a X username is available."""
 
         data: dict[str, Any] = {}
 
@@ -40,7 +40,7 @@ class Twitter:
             data = data["props"]["pageProps"]["contextProvider"]
         except Exception as e:
             logger.opt(exception=e).error(
-                f"Failed to determine availability of Twitter username @{username}"
+                f"Failed to determine availability of X username @{username}"
             )
 
             return False
@@ -52,27 +52,27 @@ class Twitter:
         # acess to page content without authorization. If this blocker
         # is to be lifted, we can avoid the API entirely and instead
         # scrape the empty_state_header_text from profile pages.
-        # https://twitter.com/elonmusk/status/1674865731136020505
+        # https://x.com/elonmusk/status/1674865731136020505
         results: bool | None = data.get("hasResults")
 
         if not results:
-            logger.success(f"Twitter username @{username} is available")
+            logger.success(f"X username @{username} is available")
 
             return True
 
-        logger.info(f"Fetched Twitter user @{username}, username is unavailable")
+        logger.info(f"Fetched X user @{username}, username is unavailable")
 
         return False
 
     def BuildEmbed(self: Self, username: str) -> DiscordEmbed:
-        """Build a Discord embed object for an available Twitter username."""
+        """Build a Discord embed object for an available X username."""
 
         embed: DiscordEmbed = DiscordEmbed()
 
         embed.set_description(
-            f"Twitter username [@{username}](https://twitter.com/{username}) is currently available."
+            f"X username [@{username}](https://x.com/{username}) is currently available."
         )
         embed.set_color("1D9BF0")
-        embed.set_footer(text="Twitter", icon_url="https://i.imgur.com/6BAmj0I.png")
+        embed.set_footer(text="X", icon_url="https://i.imgur.com/hZbC8my.png")
 
         return embed

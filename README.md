@@ -1,8 +1,8 @@
 # Moniker
 
-![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/EthanC/Moniker/ci.yml?branch=main) ![Docker Pulls](https://img.shields.io/docker/pulls/ethanchrisp/moniker?label=Docker%20Pulls) ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/ethanchrisp/moniker/latest?label=Docker%20Image%20Size)
+![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/EthanC/Moniker/ci.yaml?branch=main) ![Docker Pulls](https://img.shields.io/docker/pulls/ethanchrisp/moniker?label=Docker%20Pulls) ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/ethanchrisp/moniker/latest?label=Docker%20Image%20Size)
 
-Moniker monitors usernames across the following platforms and reports availability via Discord.
+Moniker monitors usernames across various services and reports availability via Discord.
 
 -   [Cash App](https://cash.app/)
 -   [GitHub](https://github.com/)
@@ -39,7 +39,7 @@ Regardless of your chosen setup method, Moniker is intended for use with a task 
 
 ### Docker (Recommended)
 
-Modify the following `docker-compose.yml` example file, then run `docker compose up`.
+Modify the following `compose.yaml` example file, then run `docker compose up`.
 
 ```yml
 services:
@@ -64,6 +64,6 @@ services:
 
 Moniker is built for [Python 3.12](https://www.python.org/) or greater.
 
-1. Install required dependencies using [Poetry](https://python-poetry.org/): `poetry install --no-root`
+1. Install required dependencies using [uv](https://github.com/astral-sh/uv): `uv sync`
 2. Rename `.env.example` to `.env`, then provide the environment variables.
 3. Start Moniker: `python moniker.py`
